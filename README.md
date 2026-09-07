@@ -1,249 +1,208 @@
-📊 Retail Sales Analytics
-End‑to‑end retail sales analytics project analyzing sales, profitability, customers, products, regions, and discount impact using SQL, Excel, and Power BI.
+# 📊 Retail Sales Analytics
 
-📌 Overview
-Retail businesses need more than revenue numbers — they need to understand where profitability comes from, which products and regions perform best, and how discounting affects margins.
+A retail sales analytics project analyzing sales performance, profitability, customers, products, regions, and discount impact using **SQL (MySQL), Excel, and Power BI**.
 
-This project analyzes a multi‑year retail dataset (2014–2017) to uncover insights across:
+This project follows an end-to-end data analyst workflow: data validation → SQL business analysis → advanced SQL analysis → Excel exploratory analysis → Power BI dashboard → business insights and recommendations.
 
-Sales & profit performance
+---
 
-Year‑over‑year growth
+## 📊 Table of Contents
 
-Category & sub‑category trends
+- [Project Overview](#-project-overview)
+- [Business Objectives](#-business-objectives)
+- [Tools & Technologies](#️-tools--technologies)
+- [Dataset](#-dataset)
+- [Data Quality Checks](#-data-quality-checks)
+- [Key Business Metrics](#-key-business-metrics)
+- [Power BI Dashboard](#-power-bi-dashboard)
+- [Key Business Insights](#-key-business-insights)
+- [SQL Analysis](#-sql-analysis)
+- [Excel Analysis](#-excel-analysis)
+- [Business Recommendations](#-business-recommendations)
+- [Project Structure](#-project-structure)
+- [Author](#-author)
 
-Regional profitability
+---
 
-Customer purchasing behavior
+## 📌 Project Overview
 
-Product performance
+Retail businesses need to understand not just how much they sell, but where profitability actually comes from — which products, regions, and customer segments drive margin, and how discounting affects it.
 
-Discount impact on profitability
+This project analyzes a multi-year retail sales dataset (2014–2017) to answer practical business questions:
 
-Monthly & yearly sales trends
+- Overall sales and profit performance
+- Year-over-year growth
+- Category and sub-category performance
+- Regional profitability
+- Customer purchasing behavior and profitability
+- Product performance (top and bottom performers)
+- Discount vs. profitability relationships
+- Monthly and yearly sales trends
 
-🎯 Business Objectives
-Measure total sales, profit, orders, customers, and units sold
+---
 
-Identify profitable vs. loss‑making categories and regions
+## 🎯 Business Objectives
 
-Analyze yearly and monthly performance trends
+1. Measure overall sales, profit, orders, and profit margin.
+2. Identify the most and least profitable product categories and regions.
+3. Analyze yearly and monthly sales and profit trends.
+4. Evaluate the relationship between discounts and profitability.
+5. Analyze customer purchasing behavior and identify top/loss-making customers.
+6. Translate analytical findings into actionable business recommendations.
 
-Evaluate discount–profitability relationships
+---
 
-Understand customer purchasing patterns
+## 🛠️ Tools & Technologies
 
-Identify top and bottom products and customers
+| Tool | Purpose |
+|---|---|
+| **MySQL / SQL** | Data validation, business analysis, and advanced (window function) analysis |
+| **Microsoft Excel** | Exploratory analysis, pivot tables |
+| **Power BI** | Interactive executive dashboard and visualization |
+| **Git / GitHub** | Version control and project documentation |
 
-Convert insights into actionable business recommendations
+---
 
-🛠️ Tools & Technologies
-Tool	Purpose
-MySQL / SQL	Data validation, business analysis, advanced SQL
-Microsoft Excel	Exploratory analysis, pivot tables, calculations
-Power BI	Interactive dashboard & executive reporting
-Git / GitHub	Version control & documentation
+## 📁 Dataset
 
+The project uses a retail Superstore-style transactional dataset covering **January 2014 – December 2017**, with fields including:
 
-📁 Dataset Summary
-Retail Superstore transactional dataset containing:
+Order ID, Order Date, Ship Date, Ship Mode, Customer ID, Customer Name, Segment, Country, City, State, Postal Code, Region, Product ID, Category, Sub-Category, Product Name, Sales, Quantity, Discount, Profit.
 
-9,994 transactions
+| Metric | Value |
+|---|---:|
+| Total Records | `[run 02_data_cleaning.sql summary query]` |
+| Total Customers | `[run 02_data_cleaning.sql summary query]` |
+| Total Orders | **5,009** |
+| Units Sold | `[run 02_data_cleaning.sql summary query]` |
+| Analysis Period | **Jan 2014 – Dec 2017** |
 
-21 columns
+> The blanks above come straight from the "DATA QUALITY SUMMARY" query at the bottom of `02_data_cleaning.sql` — run it once in MySQL and paste in the real values.
 
-793 customers
+---
 
-5,009 orders
+## 🔍 Data Quality Checks
 
-37,873 units sold
+Before analysis, the dataset was validated in `02_data_cleaning.sql` for:
 
-Period: Jan 2014 – Dec 2017
+- Total row count and Row ID uniqueness (duplicate check)
+- Missing/NULL values across key fields
+- Invalid numeric values (negative sales, zero/negative quantity, out-of-range discount)
+- Order date range validation
+- Category, Region, Segment, and Ship Mode consistency
 
-Key Fields:  
-Order ID, Order Date, Ship Date, Ship Mode, Customer ID, Customer Name, Segment, Country, City, State, Postal Code, Region, Product ID, Category, Sub‑Category, Product Name, Sales, Quantity, Discount, Profit.
+---
 
-🔍 Data Quality Checks (SQL)
-Validated using MySQL:
+## 📈 Key Business Metrics
 
-Row count
+*(from the Power BI dashboard)*
 
-Row ID uniqueness
+| Metric | Result |
+|---|---:|
+| Total Sales | **$2.30M** |
+| Total Profit | **$286.40K** |
+| Total Orders | **~5,009** |
+| Profit Margin | **12.47%** |
+| Analysis Period | **2014–2017** |
 
-Duplicate checks
+---
 
-NULL value checks
+# 📊 Power BI Dashboard
 
-Numeric value validation
+The Power BI dashboard provides an executive-level view of retail sales performance and profitability.
 
-Date range validation
+### Dashboard Features
 
-Category, region, segment consistency
+- Total Sales, Total Profit, Total Orders, Profit Margin KPI cards
+- Annual Sales & Profit Trend
+- Monthly Sales Trend
+- Sales by Category
+- Profit by Region
+- Year filtering (2014–2017)
+- Key Business Insights panel
 
-Ship mode consistency
+### Dashboard Preview
 
-Result:  
-Dataset contains 9,994 clean records with no duplicate Row IDs or invalid numeric values.
+![Retail Sales Analytics Dashboard](screenshots/dashboard.png)
 
-📈 Key Business Metrics
-Metric	Value
-Total Sales	$2.30M
-Total Profit	$286.40K
-Total Orders	5,009
-Total Customers	793
-Units Sold	37,873
-Profit Margin	12.47%
-Average Order Value	$458.61
-Analysis Period	2014–2017
+---
 
+# 💡 Key Business Insights
 
-📊 Power BI Dashboard
-The dashboard provides an executive‑level view of retail performance.
+1. **Technology leads profitability** with the highest profit contribution among categories.
+2. **West is the strongest region** by both profit and profit margin.
+3. **Furniture has the weakest margin** despite generating substantial sales — strong revenue does not guarantee strong profitability.
+4. **Higher discount levels are associated with lower profitability**, with the SQL discount-band analysis (`03_business_analysis.sql`) showing margins deteriorating — and turning loss-making — at higher discount tiers. This is an observed association in the data, not a claim of direct causation.
 
-Features:
+---
 
-Sales, Profit, Orders, Profit Margin KPIs
+# 🧮 SQL Analysis
 
-Annual Sales & Profit Trend
+SQL work is organized by workflow stage:
 
-Monthly Sales Trend
+### `01_database_setup.sql`
+Creates the MySQL database and the `retail_sales` table structure.
 
-Sales by Category
+### `02_data_cleaning.sql`
+Data validation and quality checks — row counts, NULL checks, duplicate Row IDs, numeric range validation, category/region/segment/ship-mode consistency.
 
-Profit by Region
+### `03_business_analysis.sql`
+Core business analysis, including:
+- Overall KPIs and profit margin
+- Sales & profit by year, month, category, sub-category, region, segment
+- Profitability by discount level
+- Top/bottom 10 products by profit
+- Top 10 customers by sales and by profit
+- Average order value (overall, by segment, by region)
+- Repeat vs. one-time customer analysis
+- Loss-making customer identification
+- Shipping mode and state-level performance
 
-Discount vs. Profit Analysis
+### `04_advanced_analysis.sql`
+Advanced SQL using CTEs, window functions, and ranking:
+- Top 3 most profitable products per category (`RANK()`)
+- Top 5 products by sales per category
+- Monthly sales with running total (`SUM() OVER`)
+- Year-over-year sales growth, overall and by category (`LAG()`)
+- Category profit contribution % of total
+- Top 5 profitable customers per segment
+- Products with repeated loss-making sales
+- High-sales, low-margin product identification
+- Yearly profit running total
+- Customer sales contribution %
+- Top customers by profit per order
 
-Year filters
+### `05_data_import.sql`
+Reproducible CSV → MySQL import process (`LOAD DATA INFILE`), including date parsing.
 
-Key Insights panel
+---
 
-💡 Key Insights
-1. Technology leads profitability
-Profit: $145.45K
+# 📊 Excel Analysis
 
-Margin: 17.40%  
-Strongest category by profitability.
+Excel was used for exploratory analysis and initial business validation, including pivot tables covering category, regional, yearly, and monthly performance, and profit margin calculations.
 
-2. Furniture has the weakest margin
-Profit: $18.45K
+Workbook: `excel/Retail_Sales_Analysis.xlsx`
 
-Margin: 2.49%  
-High revenue but low profitability.
+---
 
-3. West is the strongest region
-Sales: $725.46K
+# 💼 Business Recommendations
 
-Profit: $108.42K
+1. **Review Furniture profitability** — investigate pricing, product mix, and discounting within the category.
+2. **Optimize discount strategy** — use the discount-band SQL analysis to set thresholds that protect margin rather than discounting broadly.
+3. **Continue investing in Technology** — it shows the strongest profitability and should remain a growth priority.
+4. **Investigate underperforming regions** — compare product mix and discount exposure between West (top performer) and lower-margin regions.
+5. **Monitor profit alongside revenue** — several categories/products generate high sales but weak or negative margin; use the top/bottom product and loss-making customer queries regularly, not just at report time.
 
-Margin: 14.94%
+---
 
-4. Central region has a profitability gap
-Sales: $501.24K
+# 📂 Project Structure
 
-Profit: $39.71K
-
-Margin: 7.92%
-
-5. Sales & profit increased over time
-Year	Sales	Profit
-2014	$484.25K	$49.54K
-2015	$470.53K	$61.62K
-2016	$609.21K	$81.80K
-2017	$733.22K	$93.44K
-
-
-6. Higher discounts = lower profitability
-Discounts above 30% became loss‑making overall.
-
-🧮 SQL Analysis
-01_database_setup.sql
-Database + table creation.
-
-02_data_cleaning.sql
-Data validation checks.
-
-03_business_analysis.sql
-Core business analysis:
-
-KPIs
-
-Profit margin
-
-Yearly & monthly trends
-
-Category & sub‑category performance
-
-Regional & segment analysis
-
-Discount impact
-
-Top/bottom products
-
-Customer profitability
-
-Shipping mode performance
-
-State‑level analysis
-
-04_advanced_analysis.sql
-Advanced SQL using:
-
-CTEs
-
-Window functions
-
-Ranking
-
-Running totals
-
-YOY analysis
-
-Profit contribution
-
-Customer segmentation
-
-High‑sales, low‑margin products
-
-05_data_import.sql
-CSV → MySQL import using LOAD DATA INFILE.
-
-📊 Excel Analysis
-Performed exploratory analysis:
-
-Pivot tables
-
-Category & region analysis
-
-Yearly & monthly trends
-
-Customer analysis
-
-Profit margin calculations
-
-File: excel/Retail_Sales_Analysis.xlsx
-
-💼 Business Recommendations
-Review Furniture pricing & cost structure
-
-Optimize discount strategy
-
-Invest further in Technology category
-
-Investigate Central region performance
-
-Monitor profit alongside revenue
-
-📂 Project Structure
-Code
+```text
 01-Retail-Sales-Analytics/
 │
 ├── data/
 │   └── raw/
 │       └── superstore.csv
-│
-├── documentation/
-│   └── 01_dataset_overview.md
 │
 ├── excel/
 │   └── Retail_Sales_Analysis.xlsx
@@ -252,8 +211,7 @@ Code
 │   └── Retail_Sales_Analytics.pbix
 │
 ├── screenshots/
-│   ├── dashboard.png
-│   └── executive_overview.png
+│   └── dashboard.png
 │
 ├── sql/
 │   ├── 01_database_setup.sql
@@ -263,45 +221,43 @@ Code
 │   └── 05_data_import.sql
 │
 └── README.md
-🔄 Workflow
-Raw Data →
-Data Validation →
-Excel Analysis →
-MySQL Import →
-SQL Business Analysis →
-Advanced SQL →
-Power BI Dashboard →
-Insights →
-Recommendations
+```
 
-👤 Author
-Syed Khush  
+---
+
+# 🔄 Project Workflow
+
+```text
+Raw Data
+    ↓
+Data Validation (SQL)
+    ↓
+Excel Exploratory Analysis
+    ↓
+MySQL Data Import
+    ↓
+SQL Business Analysis
+    ↓
+Advanced SQL Analysis (CTEs, Window Functions)
+    ↓
+Power BI Dashboard
+    ↓
+Business Insights
+    ↓
+Business Recommendations
+```
+
+---
+
+# 👤 Author
+
+**Syed Khush**
 Bachelor of Engineering – Computer Science
+**Skills:** SQL | Excel | Power BI | Data Analytics
 
-Skills: SQL | Excel | Power BI | Data Analytics
-GitHub: syedkhush31
+[GitHub Profile](https://github.com/syedkhush31)
 
-⭐ Project Highlights
-9,994 transactions analyzed
+---
 
-5,009 orders
-
-793 customers
-
-37,873 units sold
-
-$2.30M total sales
-
-$286.40K total profit
-
-12.47% profit margin
-
-Business‑focused SQL analysis
-
-Advanced SQL (CTEs, window functions)
-
-Excel exploratory analysis
-
-Interactive Power BI dashboard
-
-Actionable business recommendations
+**Project:** Retail Sales Analytics
+**Tools:** MySQL | SQL | Excel | Power BI | GitHub
